@@ -1,6 +1,7 @@
 -- SELECT DISTINCT released_year, title, CONCAT(author_fname, ' ', author_lname) AS 'Full Name' 
 -- FROM books 
--- ORDER BY released_year;
+-- ORDER BY released_year
+-- LIMIT 12;
 
 -- INSERT INTO books
 -- (title, author_fname, author_lname, released_year, stock_quantity, pages)
