@@ -1,10 +1,12 @@
--- **Learning Subqueries
-SELECT title, pages FROM books 
-WHERE pages = (SELECT MIN(pages) FROM books);
--- ** WHERE pages = 634 **
+SELECT author_fname, author_lname, MAX(pages) FROM books GROUP BY author_lname, author_fname;
 
-SELECT * FROM books 
-WHERE pages = (SELECT MAX(pages) FROM books);
+-- -- **Learning Subqueries
+-- SELECT title, pages FROM books 
+-- WHERE pages = (SELECT MIN(pages) FROM books);
+-- -- ** WHERE pages = 634 **
+
+-- SELECT * FROM books 
+-- WHERE pages = (SELECT MAX(pages) FROM books);
 
 
 -- SELECT MAX(pages) AS 'Longest Book' FROM books;
