@@ -23,22 +23,33 @@
 -- GROUP BY genre
 -- ORDER BY 2;
 
+-- SELECT 
+--     first_name,
+--     last_name, 
+--     COUNT(rating) AS COUNT,
+--     IFNULL(MIN(rating), 0) AS MIN,
+--     IFNULL(MAX(rating), 0) AS MAX,
+--     IFNULL(ROUND(AVG(rating), 2), 0) AS AVG,
+--     -- IF(COUNT(rating) >=1, 'ACTIVE', 'INACTIVE') AS STATUS
+--     CASE 
+--         WHEN rating IS NULL THEN 'INACTIVE'
+--         WHEN COUNT(rating) >= 10 THEN 'POWER USER'
+--         WHEN COUNT(rating) >= 1 THEN 'ACTIVE'
+--         ELSE 'INACTIVE'
+--     END AS 'STATUS'
+-- FROM reviewers
+-- LEFT JOIN reviews
+--     ON reviewers.id = reviews.reviewer_id
+-- GROUP BY reviewers.id
+-- ORDER BY COUNT DESC;
+
 SELECT 
-    first_name,
-    last_name, 
-    COUNT(rating) AS COUNT,
-    IFNULL(MIN(rating), 0) AS MIN,
-    IFNULL(MAX(rating), 0) AS MAX,
-    IFNULL(ROUND(AVG(rating), 2), 0) AS AVG,
-    -- IF(COUNT(rating) >=1, 'ACTIVE', 'INACTIVE') AS STATUS
-    CASE 
-        WHEN rating IS NULL THEN 'INACTIVE'
-        WHEN COUNT(rating) >= 10 THEN 'POWER USER'
-        WHEN COUNT(rating) >= 1 THEN 'ACTIVE'
-        ELSE 'INACTIVE'
-    END AS 'STATUS'
+    title, 
+    rating, 
+    CONCAT(first_name, ' ', last_name) AS reviewer
 FROM reviewers
-LEFT JOIN reviews
+INNER JOIN reviews
     ON reviewers.id = reviews.reviewer_id
-GROUP BY reviewers.id
-ORDER BY COUNT DESC;
+INNER JOIN series
+    ON series.id = reviews.series_id
+ORDER BY title;
